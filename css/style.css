@@ -1,0 +1,39 @@
+#addusercont {
+    background-color: darkgray;
+    border: 1pt dimgray solid;
+    width: 25%;
+}
+
+#filterForm {
+    background-color: darkgray;
+    border: 1pt dimgray solid;
+    width: 25%;
+}
+
+.pad {
+    padding: .3em;
+}
+
+.myimg {
+    max-height: 5em;
+}
+
+.filterBtn {
+    background-color: darkgray;
+}
+
+.theader:hover {
+    background-color: rgba(83, 92, 104, 0.226);
+}
+
+.option:hover {
+    background-color: darkgrey;
+}
+
+#filterRow {
+    border: 1.49pt lightgrey solid;
+}
+
+.btnfiltergroup {
+    padding-bottom: 1em;
+}
