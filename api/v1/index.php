@@ -10,7 +10,7 @@ require_once "items.php";
 $host = "localhost";
 $usr = "jace";
 $pwd = "Ghost797";
-$db = "hpdtwotest";
+$db = "hpd";
 
 
 global $host, $usr, $pwd, $db, $mysqli;

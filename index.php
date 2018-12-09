@@ -1,0 +1,285 @@
+<?php
+$str = <<<EOD
+<head>
+    <title>HPD II</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='./js/javascript.js'></script>
+    <script type="text/javascript" src="./js/dommani.js"></script>
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <div class="container-fluid">
+        <div class="main-wrapper-first">
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="d-flex flex-row">
+                        <h1 class="display-3">HPD <span class="display-4">&#8545;</span></h1>
+                        <div class="d-flex flex-row">
+                            <h3 id="scnd_t" class="p-2"><i class="fa fa-arrow-circle-o-right ml-2"></i> Index Page</h3>
+                        </div>
+                    </div>
+                    <blockquote>
+                        <p class="lead">This page displays the Owners Information in cards. When "More" button is clicked a modal is triggered displaying addition info. The load more users at the bottom of the page will load the next 6 owners from the database</p>
+                    </blockquote>
+                </div>
+
+            </div>
+            <div class="btnfiltergroup">
+                <button class="btn btn-lg option" onclick="addusernow()">Add User</button>
+                <button class="btn btn-lg option" onclick="showFilter()">Filter</button>
+            </div>
+            <div id="filterForm" style="display:none;">
+                <div class="jumbotron-fluid">
+                    <h1><span class="label label-primary"><i class='fas fa-filter'style="padding-right:1em;"></i>Search</span></h1>
+                    <div class="form-group">
+                        <div class="input-group pad">
+                            <span class="input-group-addon">First Name</span>
+                            <input class="form-control" type="text" size="12" name=fnamefilter value="">
+                        </div>
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Last Name</span>
+                            <input class="form-control" type="text" size="12" name=lnamefilter value="">
+                        </div>
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Street1</span>
+                            <input class="form-control" type="text" size="12" name=street1filter value="">
+                        </div>
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Street2</span>
+                            <input class="form-control" type="text" size="12" name=street2filter value="">
+                        </div>
+                        <div class="input-group pad">
+                            <span class="input-group-addon">City</span>
+                            <input class="form-control" type="text" size="12" name=cityfilter value="">
+                        </div>
+                        <div class="input-group pad">
+                            <span class="input-group-addon">State</span>
+                            <input class="form-control" type="text" size="12" name=statefilter value="">
+                        </div>
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Zip</span>
+                            <input class="form-control" type="text" size="12" name=zipfilter value="">
+                        </div>
+
+
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Policy</span>
+                            <input class="form-control" type="text" size="12" name=policyfilter value="">
+                        </div>
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Expiration</span>
+                            <input class="form-control" type="text" size="12" name=expirationfilter value="">
+                        </div>
+                        <button onClick="filter()">Filter</button></th>
+                    </div>
+                </div>
+            </div>
+            <div id="addusercont" style="display:none;">
+                <div class="jumbotron-fluid" id="addUserForm">
+                    <h1><span class="label label-primary"><i class='fas fa-user-plus'style="padding-right:1em;"></i>Create New Owner </span></h1>
+                    <div class="form-group">
+                        <div class="input-group pad">
+                            <span class="input-group-addon">First Name</span>
+                            <input class="form-control" id="fname_id" type="text" size="12" name=fname>
+                        </div>
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Last Name</span>
+                            <input class="form-control" id="lname_id" type="text" size="12" name=lname>
+                        </div>
+
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Street1</span>
+                            <input class="form-control" id="street1_id" type="text" size="12" name=street1>
+                        </div>
+
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Street2</span>
+                            <input class="form-control" id="street2_id" type="text" size="12" name=street2>
+                        </div>
+
+                        <div class="input-group pad">
+                            <span class="input-group-addon">City</span>
+                            <input class="form-control" id="city_id" type="text" size="12" name=city>
+                        </div>
+
+                        <div class="input-group pad">
+                            <span class="input-group-addon">State</span>
+                            <input class="form-control" id="state_id" type="text" size="12" name=state>
+                        </div>
+
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Zip</span>
+                            <input class="form-control" id="zip_id" type="text" size="12" name=zip>
+                        </div>
+
+
+                        <div class="input-group pad">
+                            <span class="input-group-addon">Policy</span>
+                            <input class="form-control" id="policy_id" type="text" size="12" name=policy>
+                        </div>
+
+                        <div class="input-group pad">
+
+                            <span class="input-group-addon">Expiration</span>
+                            <input class="form-control" id="expiration_id" type="text" size="12" name=expiration>
+                        </div>
+
+
+
+                        <button onClick="addOwner()">Add</button>
+                    </div>
+                </div>
+            </div>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+            <table class="table table-hover">
+                <thead>
+                    <tr id="filterRow">
+                        <th class="theader"><span onclick="showFilter()"><i class="fas fa-filter"></i></span>
+                        </th>
+                        <th class="theader"><span onclick="sortBy('fname')">First <span class = "filterIcon">▲</span><br></span>
+                        </th>
+                        <th class="theader"> <span onclick="sortBy('lname')">Last <span class = "filterIcon">▲</span><br></span>
+                        </th>
+                        <th class="theader"> <span onclick="sortBy('street1')">Address 1 <span class = "filterIcon"><span class = "filterIcon">▲</span></span><br></span>
+                        </th>
+                        <th class="theader"><span onclick="sortBy('street2')">Address 2 <span class = "filterIcon">▲</span><br></span>
+                        </th>
+                        <th class="theader"> <span onclick="sortBy('city')">City <span class = "filterIcon">▲</span><br></span>
+                        </th>
+                        <th class="theader"> <span onclick="sortBy('state')">State <span class = "filterIcon">▲</span><br></span>
+                        </th>
+                        <th class="theader"><span onclick="sortBy('zip')">Zip <span class = "filterIcon">▲</span><br></span>
+                        </th>
+                        <th class="theader"> <span onclick="sortBy('policy')">Policy <span class = "filterIcon">▲</span><br></span>
+                        </th>
+                        <th class="theader"> <span onclick="sortBy('expiration')">Expiration <span class = "filterIcon">▲</span><br></span>
+                        </th>
+                    </tr>
+                    <tbody id="itemsTableBody">
+                    </tbody>
+            </table>
+            <div class='modal fade' id='updateModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog modal-lg modal-lg modal-dialog-centered' role='document'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title' id='ModalLabel'>Update Owner</h5>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                  </button>
+                        </div>
+                        <div class='modal-body' id="modalBody">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>First</th>
+                                        <th>Last</th>
+                                        <th>Address 1</th>
+                                        <th>Address 2</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Zip</th>
+                                        <th>Policy</th>
+                                        <th>Expiration</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="updateModalTableBody">
+                                    <!-- THIS IS WHERE THE MAGIC HAPPENS -->
+                                </tbody>
+                            </table>
+                            <div class='modal-footer'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog modal-lg modal-lg modal-dialog-centered' role='document'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title' id='ModalLabel'>Items</h5>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                  </button>
+                        </div>
+                        <div class='modal-body' id="modalBody">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Photo</th>
+                                        <th>Description</th>
+                                        <th>Valuation</th>
+                                        <th>Method</th>
+                                        <th>Verified</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modalTableBody">
+                                </tbody>
+
+                            </table>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='modal fade' id='updateItemModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog modal-lg modal-lg modal-dialog-centered' role='document'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title' id='ModalLabel'>Items</h5>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                      <span aria-hidden='true'>&times;</span>
+                    </button>
+                        </div>
+                        <div class='modal-body' id="modalBody">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Photo</th>
+                                        <th>Description</th>
+                                        <th>Valuation</th>
+                                        <th>Method</th>
+                                        <th>Verified</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="updateItemModalTableBody">
+                                    <!-- THIS IS WHERE THE MAGIC HAPPENS -->
+                                </tbody>
+
+                            </table>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <ul class="pagination">
+                <li><span onClick="lastP()">Prev</span>&nbsp&nbsp </li>
+                <li><span onClick="nextP()">Next</span></li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+EOD;
+
+
+echo $str;
+?>

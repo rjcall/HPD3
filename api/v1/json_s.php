@@ -8,16 +8,12 @@ require_once "owners.php";
 header("Content-Type: application/json; charset=UTF-8");
 if(isset($_GET{"x"})){
     $obj = json_decode($_GET{"x"}, false);
+    $host = "localhost";
+    $usr = "jace";
+    $pwd = "Ghost797";
+    $db = "hpd";
 
-    $servername = "localhost:3306";
-    $username = "jace";
-    $password = "Ghost797";
-    $dbname = "hpd2";
-    $rec_limit = 9;
-    $conn = new mysqli($servername, $username,$password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    $mysqli = new mysqli($host, $usr, $pwd, $db);
 
     $dir = $obj->sort_dir;
     $cols = array("fname", "lname", "street1", "street2", "city", "state", "zip", "policy", "expiration");
@@ -33,9 +29,12 @@ if(isset($_GET{"x"})){
         $sql = "SELECT * FROM {$obj->table} LIMIT {$obj->offset}, {$obj->limit}";
 
     }
-    $result = $conn->query($sql);
-    $outp = $result->fetch_all(MYSQLI_ASSOC);
-
-    echo json_encode($outp);
+    $result = $mysqli->query($sql);
+     if (!$result)
+      die("query didn't work bud");
+      $results = array();
+      while ($row = $result->fetch_row()) {
+        array_push($results, $row); 
+    }
+    echo json_encode($results);
 }
-
